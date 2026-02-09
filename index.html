@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan Bakelants | Professional Cyclist & Sports Consultant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #d4af37;
+            --highlight: #ffd700;
+            --text: #333;
+            --light: #f8f8f8;
+            --mid: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.85) 100%), 
+                        url('/mnt/user-data/outputs/71A61D88-8DC0-4A4D-887D-D863F87C9143.jpeg') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 30%, var(--highlight) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--mid);
+            animation: fadeInUp 1.2s ease-out 0.2s backwards;
+        }
+
+        .hero .highlight-bar {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: fadeInUp 1.2s ease-out 0.4s backwards;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        /* Career Highlights */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .career-card {
+            background: white;
+            padding: 2.5rem;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .career-card:hover::before {
+            left: 100%;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .year {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Story Section */
+        .story {
+            background: var(--primary);
+            color: white;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(212,175,55,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story .section-header {
+            color: white;
+        }
+
+        .story .section-header::after {
+            background: var(--highlight);
+        }
+
+        .story p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--highlight);
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 4px solid var(--accent);
+            line-height: 1.6;
+        }
+
+        /* Current Work Section */
+        .current-work {
+            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .work-item {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: scale(1.02);
+        }
+
+        .work-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--highlight));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .work-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .work-item p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--accent);
+            padding: 5rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            color: var(--primary);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-header {
+                font-size: 2.5rem;
+            }
+            
+            .career-grid,
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Image styles */
+        .cycling-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin: 3rem auto;
+            display: block;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--light);
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Jan Bakelants</h1>
+            <p class="subtitle">Professional Cyclist | Tour de France Stage Winner | Yellow Jersey Wearer | Sports Consultant</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">15</span>
+                <span class="stat-label">Years Pro</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1</span>
+                <span class="stat-label">TDF Stage Win</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15</span>
+                <span class="stat-label">Grand Tours</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2013</span>
+                <span class="stat-label">Yellow Jersey</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Career Highlights -->
+    <section>
+        <h2 class="section-header">Career Highlights</h2>
+        <div class="career-grid">
+            <div class="career-card">
+                <div class="year">2013</div>
+                <div class="achievement">Tour de France Stage Winner</div>
+                <p class="description">Won Stage 2 from Bastia to Ajaccio in Corsica by just one second after a daring late attack. Claimed the yellow jersey in my first Tour de France—a moment that defined my career.</p>
+            </div>
+            <div class="career-card">
+                <div class="year">2008</div>
+                <div class="achievement">Tour de l'Avenir Champion</div>
+                <p class="description">Won the prestigious young riders' stage race with a commanding performance, establishing myself as a rising talent in professional cycling.</p>
+            </div>
+            <div class="career-card">
+                <div class="year">2015</div>
+                <div class="achievement">Italian Classics Winner</div>
+                <p class="description">Claimed victories in both Giro dell'Emilia and Giro del Piemonte, showcasing versatility on challenging Italian terrain.</p>
+            </div>
+            <div class="career-card">
+                <div class="year">2022</div>
+                <div class="achievement">Tour de Wallonie Victory</div>
+                <p class="description">Won Stage 5 on home soil in an emotional final victory before retirement, proving resilience after years of setbacks and injury.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="story-content">
+            <h2 class="section-header">My Journey</h2>
+            
+            <img src="/mnt/user-data/outputs/98bce47a-07e7-41d2-9840-14778e181ebd.jpeg" alt="Jan Bakelants gravel racing" class="cycling-image" style="margin-top: 2rem;">
+            
+            <p>Born in Oudenaarde, Belgium on February 14, 1986, I turned professional in 2009 after winning the prestigious Tour de l'Avenir. My career spanned 15 incredible years, racing for teams including Topsport Vlaanderen, Omega Pharma-Quick-Step, RadioShack-Leopard, AG2R La Mondiale, Team Sunweb, and Intermarché-Wanty-Gobert.</p>
+            
+            <p class="quote">"It took me five years to win my first professional race, but what a victory it was—a Tour de France stage and the yellow jersey. I am a happy man."</p>
+            
+            <p>The 2013 Tour de France Stage 2 victory in Corsica remains the defining moment of my career. After years of near-misses and injuries, I attacked in the final kilometers, holding off the charging peloton by just one second. That win gave me the yellow jersey—something I never imagined possible in my debut Tour.</p>
+            
+            <p>My career wasn't without challenges. A devastating crash at Il Lombardia in 2017 left me with fractured vertebrae and my life hanging in the balance. The accident left me 1 centimeter shorter, but I refused to give up. I fought my way back to racing, proving that determination can overcome even the darkest moments.</p>
+            
+            <p>Throughout my 15-year career, I competed in 15 Grand Tours, won stages in the Tour de France and Critérium du Dauphiné, and claimed victories in prestigious one-day races. Before turning pro, I earned a degree in bioengineering from the University of Leuven—proof that there's more to life than just cycling, though the sport always held first place in my heart.</p>
+        </div>
+    </section>
+
+    <!-- Professional Timeline -->
+    <section>
+        <h2 class="section-header">Professional Career</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2009-2011</div>
+                <div class="timeline-content">
+                    <h4>Topsport Vlaanderen & Omega Pharma-Lotto</h4>
+                    <p>Turned professional and developed as a classics and stage race specialist. Despite some setbacks, continued to show promise in major races.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2012-2013</div>
+                <div class="timeline-content">
+                    <h4>RadioShack-Leopard</h4>
+                    <p>Breakthrough season in 2013 with Tour de France stage win and yellow jersey. Also won Grand Prix de Wallonie and established reputation as a breakaway specialist.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2014-2017</div>
+                <div class="timeline-content">
+                    <h4>Omega Pharma-Quick-Step & AG2R La Mondiale</h4>
+                    <p>Won Critérium du Dauphiné stage (2014) and Italian classics (2015). Suffered career-threatening crash at Il Lombardia in 2017.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2018-2022</div>
+                <div class="timeline-content">
+                    <h4>Team Sunweb & Intermarché-Wanty-Gobert</h4>
+                    <p>Made remarkable comeback from serious injury. Final victory came in 2022 Tour de Wallonie on home soil before announcing retirement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Work -->
+    <section class="current-work">
+        <h2 class="section-header">What I Do Now</h2>
+        
+        <div class="image-grid">
+            <img src="/mnt/user-data/outputs/IMG_7005.jpeg" alt="Jan Bakelants with kids at gravel race">
+            <img src="/mnt/user-data/outputs/IMG_7008.jpeg" alt="Jan Bakelants family celebration">
+        </div>
+        
+        <div class="work-grid">
+            <div class="work-item">
+                <div class="work-icon">💼</div>
+                <h3>Sports Economics & Marketing</h3>
+                <p>Leveraging 15 years of professional experience to address sport-specific economic questions and develop innovative marketing strategies. I help brands connect authentically with cycling and sports audiences.</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">🎙️</div>
+                <h3>Cycling Analysis & Commentary</h3>
+                <p>Providing expert analysis on professional cycling, sharing insights on team dynamics, race tactics, and the evolving landscape of the sport. Regular contributor to cycling media and publications.</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">🚵</div>
+                <h3>Gravel Racing & Advocacy</h3>
+                <p>Competing in gravel events including Unbound Gravel and using the platform to raise awareness for important causes like education in Rwanda. Proving that competitive spirit doesn't end with retirement.</p>
+            </div>
+            <div class="work-item">
+                <div class="work-icon">🏔️</div>
+                <h3>Life Beyond Racing</h3>
+                <p>Father to Julia, Jane, Jos, and Fons. Wine enthusiast. Proud owner of Barolo, my dog. Enjoying hiking, sourdough baking, and beekeeping. Living proof that athletes can have rich, multifaceted lives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jan Bakelants. Former Professional Cyclist | Tour de France Stage Winner | Yellow Jersey Wearer</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">Born February 14, 1986 in Oudenaarde, Belgium</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.career-card, .work-item, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
